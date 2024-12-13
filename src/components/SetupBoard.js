@@ -86,7 +86,6 @@ const SetupBoard = (gameBoard) => {
         shipCount++;
         if (shipCount > 4) {
           console.log("now game must start");
-          return;
         }
         currentShip = Object.values(gameBoard.fleet)[shipCount];
         currentShipSize = currentShip.size;

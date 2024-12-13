@@ -151,6 +151,22 @@ export default class Gameboard {
     return this.fleet[shipName].isSunk();
   }
 
+  /**
+   * Places the ship randomly, used for creating the board for the computer player
+   */
+  placeShipsRandomly() {
+    const random = (min, max) =>
+      Math.floor(min + Math.random() * (max - min + 1));
+
+    for (const Ship in this.fleet) {
+      while (true) {
+        const [randomI, randomJ] = [random(0, 9), random(0, 9)];
+        const isHorizontal = random(0, 100) > 50;
+        if (this.placeShip(Ship, isHorizontal, randomI, randomJ)) break;
+      }
+    }
+  }
+
   toString() {
     return this.mat.map((row) => row.join(" ")).join("\n");
   }
