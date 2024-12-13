@@ -18,6 +18,6 @@ export default class Ships {
   }
 
   static createPatrolBoat() {
-    return new Ship("Patrol Boat", 2);
+    return new Ship("PatrolBoat", 2);
   }
 }

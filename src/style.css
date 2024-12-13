@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Jockey+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Open Sans", sans-serif;
+}
+
+button,
+input {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.title {
+  font-family: "Jockey One", sans-serif;
+  font-size: 5rem;
+  margin-bottom: 50px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(10, 3rem);
+  grid-template-rows: repeat(10, 3rem);
+  background-color: #f7f7f7;
+  border: 1px solid black;
+}
+
+.cell {
+  border: 1px solid black;
+}
+
+.cell.hover {
+  background-color: #ff2c2c;
+}
+
+.cell.ship {
+  background-color: rgb(85, 85, 85);
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.flex.row {
+  flex-direction: row;
+}
+
+#orientation-btn {
+  border: none;
+  border-radius: 25px;
+  padding: 5px 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: black;
+  color: white;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  transition: 0.3s ease;
+}
+
+#orientation-btn:hover,
+#orientation-btn:focus {
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.5);
+}

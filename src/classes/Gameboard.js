@@ -20,7 +20,7 @@ export default class Gameboard {
       Battleship: Ships.createBattleship(),
       Destroyer: Ships.createDestroyer(),
       Submarine: Ships.createSubmarine(),
-      patrolBoat: Ships.createPatrolBoat(),
+      PatrolBoat: Ships.createPatrolBoat(),
     };
   }
 
@@ -73,16 +73,16 @@ export default class Gameboard {
    * @returns
    */
   canPlaceShip(shipName, isHorizontal, i, j) {
-    const shipLength = this.fleet[shipName].length;
+    const shipSize = this.fleet[shipName].size;
 
     if (isHorizontal) {
-      if (j + shipLength > 10) return false;
-      for (let k = j; k < j + shipLength; k++) {
+      if (j + shipSize > 10) return false;
+      for (let k = j; k < j + shipSize; k++) {
         if (!this.isEmpty(i, k)) return false;
       }
     } else {
-      if (i + shipLength > 10) return false;
-      for (let k = i; k < i + shipLength; k++) {
+      if (i + shipSize > 10) return false;
+      for (let k = i; k < i + shipSize; k++) {
         if (!this.isEmpty(k, j)) return false;
       }
     }
@@ -100,14 +100,14 @@ export default class Gameboard {
   placeShip(shipName, isHorizontal, i, j) {
     if (!this.canPlaceShip(shipName, isHorizontal, i, j)) return false;
 
-    const shipLength = this.fleet[shipName].length;
+    const shipSize = this.fleet[shipName].size;
 
     if (isHorizontal) {
-      for (let k = j; k < j + shipLength; k++) {
+      for (let k = j; k < j + shipSize; k++) {
         this.setCell(i, k, shipName);
       }
     } else {
-      for (let k = i; k < i + shipLength; k++) {
+      for (let k = i; k < i + shipSize; k++) {
         this.setCell(k, j, shipName);
       }
     }
