@@ -54,6 +54,12 @@ export default class Gameboard {
     return this.getCell(i, j) === 0;
   }
 
+  /**
+   *
+   * @param {Number} i
+   * @param {Number} j
+   * @returns {Boolean} true if the specified cell has a ship in it
+   */
   hasShip(i, j) {
     return typeof this.getCell(i, j) === "string";
   }
@@ -127,6 +133,22 @@ export default class Gameboard {
       return true;
     }
     return false;
+  }
+
+  /**
+   * @return {Boolean} true if all ships has sunk
+   */
+  allShipsSunk() {
+    return Object.values(this.fleet).every((ship) => ship.isSunk());
+  }
+
+  /**
+   *
+   * @param {String} shipName
+   * @returns {Boolean} true if the specified ship has sunk
+   */
+  isShipSunk(shipName) {
+    return this.fleet[shipName].isSunk();
   }
 
   toString() {
