@@ -1,8 +1,12 @@
 import { random } from "../Utils/utils.js";
+import { Subtitle } from "../components/Titles.js";
 
 const GamePage = (humanGameBoard, computerGameBoard) => {
+  const page = document.createElement("div");
+  page.className = "game-page";
   const cont = document.createElement("div");
   cont.className = "boards-container";
+  const subTitle = Subtitle("Let the Game begin");
 
   const gameBoard = (isHuman) => {
     const board = document.createElement("div");
@@ -23,8 +27,13 @@ const GamePage = (humanGameBoard, computerGameBoard) => {
           ) {
             computerGameBoard.receiveAttack(i, j);
             const box = computerGameBoard.getCell(i, j);
-            if (box === 1) cell.classList.add("hit");
-            else if (box === -1) cell.classList.add("miss");
+            if (box === 1) {
+              cell.classList.add("hit");
+              subTitle.setTextContent("It's a hit !");
+            } else if (box === -1) {
+              cell.classList.add("miss");
+              subTitle.setTextContent("It's a miss!");
+            }
             if (computerGameBoard.allShipsSunk()) {
               alert("Human is the winner");
             }
@@ -71,8 +80,10 @@ const GamePage = (humanGameBoard, computerGameBoard) => {
 
   cont.appendChild(gameBoard(true));
   cont.appendChild(gameBoard(false));
+  page.appendChild(cont);
+  page.appendChild(subTitle.element);
 
-  return cont;
+  return page;
 };
 
 export default GamePage;

@@ -55,8 +55,8 @@ input {
 
 .game-board {
   display: grid;
-  grid-template-columns: repeat(10, 3rem);
-  grid-template-rows: repeat(10, 3rem);
+  grid-template-columns: repeat(10, 2.3rem);
+  grid-template-rows: repeat(10, 2.3rem);
   background-color: #f7f7f7;
   border: 1px solid black;
 }
@@ -115,7 +115,7 @@ input {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 200px;
+  gap: 150px;
   animation: appear 0.6s ease forwards;
 }
 
@@ -134,4 +134,13 @@ input {
 
 #computer-board .cell:hover {
   background-color: #ff2c2c;
+}
+
+.game-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 30px;
 }
