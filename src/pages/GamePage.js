@@ -54,15 +54,18 @@ const GamePage = (humanGameBoard, computerGameBoard) => {
         if (humanGameBoard.hasShip(i, j)) {
           cell.classList.add("ship");
         }
-        cell.onclick = () => {
-          humanGameBoard.receiveAttack(i, j);
-          const cellState = humanGameBoard.getCell(i, j);
-          if (cellState === 1) {
-            cell.classList.add("hit");
-            cell.classList.remove("ship");
-          } else if (cellState === -1) {
-            cell.classList.add("miss");
-            cell.classList.remove("ship");
+        cell.onclick = (e) => {
+          // only use this function when the event is triggered programitacally not from the real mouse
+          if (!e.isTrusted) {
+            humanGameBoard.receiveAttack(i, j);
+            const cellState = humanGameBoard.getCell(i, j);
+            if (cellState === 1) {
+              cell.classList.add("hit");
+              cell.classList.remove("ship");
+            } else if (cellState === -1) {
+              cell.classList.add("miss");
+              cell.classList.remove("ship");
+            }
           }
         };
       }
