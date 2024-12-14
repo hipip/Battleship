@@ -15,6 +15,7 @@ body {
   align-items: center;
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
+  background-color: whitesmoke;
 }
 
 button,
@@ -37,6 +38,21 @@ input {
   gap: 30px;
 }
 
+@keyframes disappear {
+  70% {
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(500px);
+    filter: blur(50px);
+    opacity: 0;
+  }
+}
+
+.container.disappear {
+  animation: disappear 0.3s ease;
+}
+
 .game-board {
   display: grid;
   grid-template-columns: repeat(10, 3rem);
@@ -53,8 +69,17 @@ input {
   background-color: #ff2c2c;
 }
 
-.cell.ship {
-  background-color: rgb(85, 85, 85);
+#human-board .cell.ship,
+#setup-board .cell.ship {
+  background-color: #555555;
+}
+
+.cell.miss {
+  background-color: #ff2c2c;
+}
+
+.cell.hit {
+  background-color: greenyellow;
 }
 
 .flex {
@@ -83,4 +108,30 @@ input {
 #orientation-btn:hover,
 #orientation-btn:focus {
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.5);
+}
+
+.boards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+  animation: appear 0.6s ease forwards;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+  from {
+    transform: translateX(500px);
+    filter: blur(50px);
+    opacity: 0;
+  }
+}
+
+#computer-board .cell:hover {
+  background-color: #ff2c2c;
 }

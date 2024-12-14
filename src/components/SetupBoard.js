@@ -1,12 +1,10 @@
 import Gameboard from "../classes/Gameboard.js";
+import { startGame } from "../Utils/utils.js";
 import { Subtitle } from "./Titles.js";
 
-/**
- *
- * @param {Gameboard} gameBoard
- * @returns
- */
-const SetupBoard = (gameBoard) => {
+const SetupBoard = () => {
+  const gameBoard = new Gameboard();
+
   const cont = document.createElement("div");
   cont.className = "container";
   const board = document.createElement("div");
@@ -85,11 +83,14 @@ const SetupBoard = (gameBoard) => {
         }
         shipCount++;
         if (shipCount > 4) {
-          console.log("now game must start");
+          const computerGameBoard = new Gameboard();
+          computerGameBoard.placeShipsRandomly();
+          startGame(gameBoard, computerGameBoard);
+        } else {
+          currentShip = Object.values(gameBoard.fleet)[shipCount];
+          currentShipSize = currentShip.size;
+          subTitle.setTextContent(`Place ${currentShip.name}`);
         }
-        currentShip = Object.values(gameBoard.fleet)[shipCount];
-        currentShipSize = currentShip.size;
-        subTitle.setTextContent(`Place ${currentShip.name}`);
       }
     };
 

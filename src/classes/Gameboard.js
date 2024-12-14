@@ -1,4 +1,5 @@
 import Ships from "./Ships.js";
+import { random } from "../Utils/utils.js";
 
 /**
  * The gameboard class has a matrix of 10 x 10
@@ -62,6 +63,19 @@ export default class Gameboard {
    */
   hasShip(i, j) {
     return typeof this.getCell(i, j) === "string";
+  }
+
+  /**
+   * Returns Cells that are empty or that has a ship in them
+   */
+  getEmptyCells() {
+    const res = [];
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (this.isEmpty(i, j) || this.hasShip(i, j)) res.push([i, j]);
+      }
+    }
+    return res;
   }
 
   /**
@@ -155,9 +169,6 @@ export default class Gameboard {
    * Places the ship randomly, used for creating the board for the computer player
    */
   placeShipsRandomly() {
-    const random = (min, max) =>
-      Math.floor(min + Math.random() * (max - min + 1));
-
     for (const Ship in this.fleet) {
       while (true) {
         const [randomI, randomJ] = [random(0, 9), random(0, 9)];
@@ -165,6 +176,20 @@ export default class Gameboard {
         if (this.placeShip(Ship, isHorizontal, randomI, randomJ)) break;
       }
     }
+  }
+
+  /**
+   * Reset function used to re-play game
+   */
+  reset() {
+    this.mat = Array.from({ length: 10 }, () => Array(10).fill(0));
+    this.fleet = {
+      Carrier: Ships.createCarrier(),
+      Battleship: Ships.createBattleship(),
+      Destroyer: Ships.createDestroyer(),
+      Submarine: Ships.createSubmarine(),
+      PatrolBoat: Ships.createPatrolBoat(),
+    };
   }
 
   toString() {
